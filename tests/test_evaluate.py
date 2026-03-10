@@ -36,6 +36,16 @@ def test_normalize_entity_list_deduplicates_and_normalizes() -> None:
 
 
 @pytest.mark.skipif(not SKLEARN_AVAILABLE, reason="scikit-learn is required")
+def test_compute_label_metrics_handles_zero_class_case() -> None:
+    metrics = compute_label_metrics([[], []], [[], []])
+    assert metrics["precision"] == pytest.approx(0.0)
+    assert metrics["recall"] == pytest.approx(0.0)
+    assert metrics["f1"] == pytest.approx(0.0)
+    assert metrics["support"] == 0
+    assert metrics["num_classes"] == 0
+
+
+@pytest.mark.skipif(not SKLEARN_AVAILABLE, reason="scikit-learn is required")
 def test_integration_smoke_validation_and_evaluation_helpers(tmp_path: Path) -> None:
     row = {
         "messages": [

@@ -186,6 +186,17 @@ def compute_label_metrics(
     true_bin = mlb.transform([set(values) for values in y_true])
     pred_bin = mlb.transform([set(values) for values in y_pred])
 
+    # sklearn raises "unknown is not supported" when there are zero classes
+    # (shape: n_samples x 0). For this edge case, return zeroed metrics.
+    if true_bin.shape[1] == 0:
+        return {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0,
+            "num_classes": 0,
+        }
+
     precision, recall, f1, _ = precision_recall_fscore_support(
         true_bin,
         pred_bin,
