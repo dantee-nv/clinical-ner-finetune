@@ -273,6 +273,8 @@ class AdapterPredictor:
             trust_remote_code=True,
         )
         self.model = deps["PeftModel"].from_pretrained(base, str(adapter_dir))
+        # Disable KV cache for compatibility across transformers/remote Phi-3 code versions.
+        self.model.config.use_cache = False
         self.model.eval()
 
         self.torch = torch
@@ -309,6 +311,7 @@ class AdapterPredictor:
                 max_new_tokens=self.max_new_tokens,
                 do_sample=False,
                 temperature=0.0,
+                use_cache=False,
                 pad_token_id=self.tokenizer.eos_token_id,
             )
 

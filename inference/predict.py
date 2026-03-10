@@ -156,6 +156,8 @@ def predict_notes(
         trust_remote_code=True,
     )
     model = deps["PeftModel"].from_pretrained(base, str(adapter_dir))
+    # Disable KV cache for compatibility across transformers/remote Phi-3 code versions.
+    model.config.use_cache = False
     model.eval()
 
     device = next(model.parameters()).device
@@ -172,6 +174,7 @@ def predict_notes(
                 max_new_tokens=max_new_tokens,
                 do_sample=temperature > 0,
                 temperature=temperature,
+                use_cache=False,
                 pad_token_id=tokenizer.eos_token_id,
             )
 
