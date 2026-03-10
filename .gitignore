@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Data artifacts
+/data/interim/*.txt
+/data/interim/*.json
+
+# Training artifacts
+outputs/
+checkpoints/
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+
+# Logs
+*.log

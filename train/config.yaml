@@ -1,0 +1,30 @@
+# Colab T4-friendly baseline config for proof-of-concept QLoRA fine-tuning.
+model_name: microsoft/Phi-3-mini-4k-instruct
+train_file: data/processed/train.jsonl
+val_file: data/processed/val.jsonl
+output_dir: outputs/phi3-clinical-ner
+
+max_seq_length: 768
+num_train_epochs: 1.0
+learning_rate: 0.0002
+weight_decay: 0.01
+warmup_ratio: 0.03
+lr_scheduler_type: cosine
+
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+gradient_accumulation_steps: 8
+gradient_checkpointing: true
+
+logging_steps: 10
+eval_steps: 50
+save_steps: 50
+save_total_limit: 2
+
+seed: 42
+max_train_samples: 0
+max_eval_samples: 0
+
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05

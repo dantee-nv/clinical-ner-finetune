@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hl7:ClinicalDocument xmlns:hl7="urn:hl7-org:v3">
+  <hl7:id root="2.16.840.1.113883.19.5" extension="POC-001" />
+  <hl7:title>Synthetic C-CDA Example</hl7:title>
+  <hl7:effectiveTime value="20260309" />
+  <hl7:component>
+    <hl7:structuredBody>
+      <hl7:component>
+        <hl7:section>
+          <hl7:title>History of Present Illness</hl7:title>
+          <hl7:text>
+            <hl7:paragraph>
+              62-year-old male with type 2 diabetes and hypertension presents with persistent cough.
+            </hl7:paragraph>
+          </hl7:text>
+        </hl7:section>
+      </hl7:component>
+      <hl7:component>
+        <hl7:section>
+          <hl7:title>Medications</hl7:title>
+          <hl7:text>
+            <hl7:paragraph>Currently taking metformin 500 mg twice daily and lisinopril 10 mg daily.</hl7:paragraph>
+          </hl7:text>
+        </hl7:section>
+      </hl7:component>
+      <hl7:component>
+        <hl7:section>
+          <hl7:title>Results</hl7:title>
+          <hl7:text>
+            <hl7:paragraph>Chest X-ray ordered. HbA1c measured at 8.1%.</hl7:paragraph>
+          </hl7:text>
+        </hl7:section>
+      </hl7:component>
+    </hl7:structuredBody>
+  </hl7:component>
+</hl7:ClinicalDocument>

@@ -1,0 +1,35 @@
+{
+  "by_label": {
+    "problems": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 271,
+      "num_classes": 236
+    },
+    "treatments": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 183,
+      "num_classes": 154
+    }
+  },
+  "overall": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 454,
+    "num_classes": 390
+  },
+  "exact_match_rate": 0.0,
+  "num_examples": 50,
+  "focus_labels": [
+    "problems",
+    "treatments"
+  ],
+  "test_file": "data/processed/test.jsonl",
+  "evaluated_at_utc": "2026-03-10T07:31:40.925688+00:00",
+  "predictor": "empty",
+  "base_model": "microsoft/Phi-3-mini-4k-instruct"
+}
