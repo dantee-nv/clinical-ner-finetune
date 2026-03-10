@@ -5,10 +5,24 @@ Use this in **one Colab cell** after selecting `Runtime -> Change runtime type -
 ```python
 # ===== clinical-ner-finetune: one-cell Colab run =====
 REPO_URL = "https://github.com/dantee-nv/clinical-ner-finetune.git"
+GITHUB_TOKEN = ""  # leave blank for public repos; set for private repos
 MAX_SAMPLES = 1500  # lower to 500 for faster testing
 
-!git clone {REPO_URL} clinical-ner-finetune
-%cd clinical-ner-finetune
+import os
+import shutil
+import subprocess
+
+clone_url = REPO_URL
+if GITHUB_TOKEN:
+    clone_url = REPO_URL.replace("https://", f"https://{GITHUB_TOKEN}@")
+
+if os.path.exists("/content/clinical-ner-finetune"):
+    shutil.rmtree("/content/clinical-ner-finetune")
+
+subprocess.run(["git", "clone", clone_url, "/content/clinical-ner-finetune"], check=True)
+os.chdir("/content/clinical-ner-finetune")
+assert os.path.exists("data/parse_ccda.py"), "Clone failed: data/parse_ccda.py not found."
+print("Working directory:", os.getcwd())
 
 !python -m pip install --upgrade pip
 !python -m pip install -r requirements.txt
@@ -61,6 +75,9 @@ MAX_SAMPLES = 1500  # lower to 500 for faster testing
 from google.colab import files
 files.download("clinical-ner-artifacts.zip")
 ```
+
+### Private Repo Token (Recommended)
+If your repo is private, create a GitHub personal access token with `repo` access and set `GITHUB_TOKEN` in the cell above.
 
 ## If You Don’t Use GitHub
 - Upload your local `clinical-ner-finetune` folder to Colab manually (or via Drive).
