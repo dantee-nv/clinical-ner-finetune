@@ -28,3 +28,8 @@ max_eval_samples: 0
 lora_r: 16
 lora_alpha: 32
 lora_dropout: 0.05
+
+# Mixed precision is disabled by default for broad Colab compatibility.
+# If your environment supports stable FP16 training, set fp16: true.
+fp16: false
+bf16: false

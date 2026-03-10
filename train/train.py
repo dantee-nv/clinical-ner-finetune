@@ -38,6 +38,8 @@ class TrainConfig:
     lora_r: int = 16
     lora_alpha: int = 32
     lora_dropout: float = 0.05
+    fp16: bool = False
+    bf16: bool = False
 
 
 def _load_yaml(path: Path) -> dict[str, Any]:
@@ -185,6 +187,7 @@ def train(config: TrainConfig) -> Path:
     model = deps["AutoModelForCausalLM"].from_pretrained(
         config.model_name,
         quantization_config=bnb_config,
+        torch_dtype=torch.float16,
         device_map="auto",
         trust_remote_code=True,
     )
@@ -220,8 +223,8 @@ def train(config: TrainConfig) -> Path:
         "weight_decay": config.weight_decay,
         "warmup_ratio": config.warmup_ratio,
         "lr_scheduler_type": config.lr_scheduler_type,
-        "fp16": True,
-        "bf16": False,
+        "fp16": config.fp16,
+        "bf16": config.bf16,
         "logging_steps": config.logging_steps,
         "eval_steps": config.eval_steps,
         "save_steps": config.save_steps,
