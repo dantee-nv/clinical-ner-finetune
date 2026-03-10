@@ -243,15 +243,19 @@ pytest -q
 }
 ```
 
-## Results Table (Placeholder)
+## Results Table (Adapter Run)
 | Metric | Value |
 |---|---:|
-| Test Precision (problems+treatments) | TBD |
-| Test Recall (problems+treatments) | TBD |
-| Test F1 (problems+treatments) | TBD |
-| Exact Match Rate | TBD |
+| Test Precision (problems+treatments) | 0.8000 |
+| Test Recall (problems+treatments) | 0.7515 |
+| Test F1 (problems+treatments) | 0.7750 |
+| Exact Match Rate | 0.5500 |
 
-`eval/results.json` is included as a placeholder and should be regenerated after training.
+Latest run details:
+- Evaluated examples: `80`
+- Base model: `microsoft/Phi-3-mini-4k-instruct`
+- Predictor: `adapter`
+- Label-specific notes: `problems` has support 165 and F1 0.775; `treatments` support was 0 in this split, so treatment metrics are 0.0.
 
 ## Reproducibility Notes
 - Default random seed: `42`

@@ -34,3 +34,6 @@ checkpoints/
 
 # Logs
 *.log
+
+# Colab/download bundles
+clinical-ner-artifacts/
