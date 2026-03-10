@@ -239,17 +239,30 @@ def train(config: TrainConfig) -> Path:
 
     training_args = deps["TrainingArguments"](**training_args_kwargs)
 
-    trainer = deps["SFTTrainer"](
-        model=model,
-        tokenizer=tokenizer,
-        train_dataset=train_dataset,
-        eval_dataset=val_dataset,
-        args=training_args,
-        peft_config=peft_config,
-        dataset_text_field="text",
-        max_seq_length=config.max_seq_length,
-        packing=False,
-    )
+    trainer_kwargs: dict[str, Any] = {
+        "model": model,
+        "train_dataset": train_dataset,
+        "eval_dataset": val_dataset,
+        "args": training_args,
+        "peft_config": peft_config,
+    }
+
+    sft_signature = inspect.signature(deps["SFTTrainer"].__init__)
+    sft_params = sft_signature.parameters
+
+    # TRL API changed across versions; support both old and new constructor names.
+    if "tokenizer" in sft_params:
+        trainer_kwargs["tokenizer"] = tokenizer
+    if "processing_class" in sft_params:
+        trainer_kwargs["processing_class"] = tokenizer
+    if "dataset_text_field" in sft_params:
+        trainer_kwargs["dataset_text_field"] = "text"
+    if "max_seq_length" in sft_params:
+        trainer_kwargs["max_seq_length"] = config.max_seq_length
+    if "packing" in sft_params:
+        trainer_kwargs["packing"] = False
+
+    trainer = deps["SFTTrainer"](**trainer_kwargs)
 
     trainer.train()
 
