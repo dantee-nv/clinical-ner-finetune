@@ -4,7 +4,7 @@ Use this in **one Colab cell** after selecting `Runtime -> Change runtime type -
 
 ```python
 # ===== clinical-ner-finetune: one-cell Colab run =====
-REPO_URL = "https://github.com/<your-user>/<your-repo>.git"  # <- change this
+REPO_URL = "https://github.com/dantee-nv/clinical-ner-finetune.git"
 MAX_SAMPLES = 1500  # lower to 500 for faster testing
 
 !git clone {REPO_URL} clinical-ner-finetune
