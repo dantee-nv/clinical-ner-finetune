@@ -9,6 +9,12 @@ A recruiter-friendly proof-of-concept clinical NLP pipeline that demonstrates:
 - unit and integration testing with pytest
 - data quality validation for scientific/clinical workflows
 
+## Recruiter Signal Snapshot
+- Built and debugged an end-to-end clinical NER fine-tuning workflow on Colab T4.
+- Implemented reproducible public-dataset curation with fallback loading and schema normalization.
+- Added robust validation and metrics utilities (including edge-case handling for zero-class slices).
+- Shipped tested, CLI-first Python modules suitable for portfolio review.
+
 ## Project Overview
 This repository is intentionally simple and modular. It focuses on practical end-to-end workflow clarity rather than production hardening or aggressive optimization.
 
@@ -242,6 +248,21 @@ pytest -q
   "tests": ["pulmonary function test"]
 }
 ```
+
+## Inference Screenshot
+Use this command to regenerate a screenshot-friendly inference run:
+```bash
+python inference/predict.py \
+  --base_model microsoft/Phi-3-mini-4k-instruct \
+  --adapter_dir outputs/phi3-clinical-ner/adapter \
+  --note "Patient with diabetes on metformin. HbA1c ordered."
+```
+
+Sample terminal-style inference capture:
+![Inference Screenshot](assets/sample_results.png)
+
+Screenshot asset path:
+- `assets/sample_results.png`
 
 ## Results Table (Adapter Run)
 | Metric | Value |
