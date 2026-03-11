@@ -9,7 +9,7 @@ A recruiter-friendly proof-of-concept clinical NLP pipeline that demonstrates:
 - unit and integration testing with pytest
 - data quality validation for scientific/clinical workflows
 
-## Recruiter Signal Snapshot
+## Signal Snapshot
 - Built and debugged an end-to-end clinical NER fine-tuning workflow on Colab T4.
 - Implemented reproducible public-dataset curation with fallback loading and schema normalization.
 - Added robust validation and metrics utilities (including edge-case handling for zero-class slices).
